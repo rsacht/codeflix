@@ -3,11 +3,22 @@
 namespace CodeFlix\Http\Controllers\Admin;
 
 use CodeFlix\Models\Category;
+use CodeFlix\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+    /**
+     * @var CategoryRepository
+     */
+    private $repository;
+
+    public function __construct(CategoryRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
