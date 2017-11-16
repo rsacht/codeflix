@@ -18,7 +18,7 @@
             'style'=> 'display:none'
         ])?>
 
-        {!! form($formDelete) !!}
+        {!! form($formDelete ) !!}
         <br/><br/>
         <div class="row">
         <table class="table table-bordered">

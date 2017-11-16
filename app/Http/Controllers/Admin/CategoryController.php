@@ -135,8 +135,10 @@ class CategoryController extends Controller
      * @param  \CodeFlix\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, $id)
     {
-        //
+        $this->repository->delete($id);
+        $request->session()->flash('message', 'Categoria excluída com sucesso.');
+        return redirect()->route('admin.categories.index');
     }
 }
