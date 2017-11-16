@@ -7,6 +7,7 @@ use CodeFlix\Models\Category;
 use CodeFlix\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
+use Kris\LaravelFormBuilder\Form;
 
 class CategoryController extends Controller
 {
@@ -49,7 +50,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /** @var Form $form */
+        $form = \FormBuilder::create(CategoryForm::class);
+
+        if(!$form->isValid()){
+            //Redirecionar para a página de criação de categorias
+            return redirect()
+                //retorna para a página anterior
+                ->back()
+                //Com os erros e campos que o usuário digitou incorretamente no formulário
+                ->withErrors($form->getErrors())
+                //Retornar com os dados corretos também
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $this->repository->create($data);
+        $request->session()->flash('message', 'Categoria criada com sucesso!');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -86,9 +104,24 @@ class CategoryController extends Controller
      * @param  \CodeFlix\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        /** @var Form $form */
+        $form = \FormBuilder::create(CategoryForm::class, [
+            'data' => ['id' => $id ]
+        ]);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $this->repository->update($data,$id);//l5-repository
+        $request->session()->flash('message', 'Categoria alterada com sucesso!');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
