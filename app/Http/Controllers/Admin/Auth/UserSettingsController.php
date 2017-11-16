@@ -2,53 +2,24 @@
 
 namespace CodeFlix\Http\Controllers\Admin\Auth;
 
-use CodeFlix\Models\User;
+use CodeFlix\Forms\UserSettingsForm;
+use CodeFlix\Repositories\UserRepository;
+use FormBuilder;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
+use Kris\LaravelFormBuilder\Form;
 
 class UserSettingsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var UserRepository
      */
-    public function index()
-    {
-        //
-    }
+    private $repository;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \CodeFlix\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
+    public function __construct(UserRepository $repository)
+{
+    $this->repository = $repository;
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -56,9 +27,14 @@ class UserSettingsController extends Controller
      * @param  \CodeFlix\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
-        //
+        /** @var Form $form */
+        $form = FormBuilder::create(UserSettingsForm::class, [
+            'url' => route('admin.user_settings.update'),
+            'method' => 'PUT'
+        ]);
+        return view('admin.auth.setting', compact('form'));
     }
 
     /**
@@ -68,19 +44,22 @@ class UserSettingsController extends Controller
      * @param  \CodeFlix\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        /** @var Form $form */
+        $form = FormBuilder::create(UserSettingsForm::class);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $this->repository->update($data,$id);
+        $request->session()->flash('message', 'Senha alterada com sucesso!');
+        return redirect()->route('admin.user_settings.edit');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \CodeFlix\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }
