@@ -7,6 +7,7 @@ use CodeFlix\Models\Category;
 use CodeFlix\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
+use Kris\LaravelFormBuilder\Facades\FormBuilder;
 use Kris\LaravelFormBuilder\Form;
 
 class CategoryController extends Controller
@@ -39,7 +40,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $form = FormBuilder::create(CategoryForm::class, [
+            'url' => route('admin.categories.store'),
+            'method' => 'POST'
+        ]);
+        return view('admin.categories.create', compact('form'));
     }
 
     /**
