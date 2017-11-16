@@ -43,7 +43,12 @@ Route::group([
         Route::get('dashboard', function(){
             return view('admin.dashboard');
         });
+        //USUÁRIOS
         Route::resource('users', 'UsersController');
+        // Alteração de senha do usuário
+        Route::get('users/settings', 'Auth\UserSettingsController@edit')->name('user_settings.edit');
+        Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user_settings.update');
+        //CATEGORIAS
         Route::resource('categories', 'CategoryController');
     });
 });

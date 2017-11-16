@@ -34,6 +34,13 @@
                                     'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
                                 ]
                             ],
+                            [
+                                'link' => route('admin.'),
+                                'title' => 'Logout',
+                                'linkAttributes' => [
+                                    'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
+                                ]
+                            ],
                             //['link' => route('admin.logout'), 'title' => 'Carrinho'],
                         ]
                     ]
