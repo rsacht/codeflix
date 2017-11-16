@@ -57,7 +57,7 @@ class UserSettingsController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $this->repository->update($data,$id);
+        $this->repository->update($data,\Auth::user()->$id);
         $request->session()->flash('message', 'Senha alterada com sucesso!');
         return redirect()->route('admin.user_settings.edit');
     }
