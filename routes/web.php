@@ -44,6 +44,7 @@ Route::group([
             return view('admin.dashboard');
         });
         Route::resource('users', 'UsersController');
+        Route::resource('categories', 'CategoryController');
     });
 });
 
