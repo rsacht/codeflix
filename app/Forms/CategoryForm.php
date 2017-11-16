@@ -12,7 +12,7 @@ class CategoryForm extends Form
         $this
             ->add('category', 'text', [
                 'label' => 'Categoria',
-                'rules' => "required|max:255|unique:categories, $id"
+                'rules' => "required|unique:categories"
             ]);
     }
 }
