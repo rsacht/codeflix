@@ -4,20 +4,19 @@
     <div class="container">
         <div class="row">
             <h3>Listagem de Categorias</h3>
-            {!! Button::primary('Nova Categoria')->asLinkTo(route('admin.users.create')) !!}
+            {!! Button::primary('Nova Categoria')->asLinkTo(route('admin.categories.create')) !!}
         </div>
     <div class="row">
     {!!
-        Table::withContents($users->items())->striped()
-        ->callback('Ações', function($field, $user){
-            $linkEdit = route('admin.users.edit', [ 'user' => $user->id]);
-            $linkShow = route('admin.users.show', [ 'user' => $user->id]);
+        Table::withContents($categories->items())->striped()->callback('Ações', function($field, $category){
+            $linkEdit = route('admin.categories.edit', [ 'category' => $category->id]);
+            $linkShow = route('admin.categories.show', [ 'category' => $category->id]);
             return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit).'|'.
                    Button::link(Icon::create('remove'))->asLinkTo($linkShow);
         })
     !!}
     </div>
 
-    {!! $users->links() !!}
+    {!! $categories->links() !!}
     </div>
 @endsection
