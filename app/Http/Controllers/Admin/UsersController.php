@@ -135,9 +135,10 @@ class UsersController extends Controller
      * @param  \CodeFlix\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $this->repository->delete($id);
+        $request->session()->flash('message', 'Usuário excluído com sucesso.');
         return redirect()->route('admin.users.index');
     }
 }
