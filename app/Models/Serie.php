@@ -10,6 +10,6 @@ class Serie extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = [];
+    protected $fillable = ['title', 'description'];
 
 }
