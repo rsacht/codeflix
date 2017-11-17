@@ -3,17 +3,17 @@
 @section('content')
     <div class="container">
     <div class="row">
-        <h3>Categoria</h3>
+        <h3>Séries</h3>
         <?php $iconEdit = Icon::create('pencil');?>
-        {!! Button::primary($iconEdit)->asLinkTo(route('admin.categories.edit', ['category' => $category->id])) !!}
+        {!! Button::primary($iconEdit)->asLinkTo(route('admin.series.edit', ['serie' => $serie->id])) !!}
         <?php $iconDestroy = Icon::create('remove');?>
         {!! Button::danger($iconDestroy)
-            ->asLinkTo(route('admin.categories.destroy',['category' => $category->id]))
+            ->asLinkTo(route('admin.series.destroy',['serie' => $serie->id]))
             ->addAttributes(['onclick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"])
         !!}
         <?php $formDelete = FormBuilder::plain([
             'id' => 'form-delete',
-            'route' => ['admin.categories.destroy','category' => $category->id],
+            'route' => ['admin.series.destroy','serie' => $serie->id],
             'method' => 'DELETE',
             'style'=> 'display:none'
         ])?>
@@ -25,11 +25,15 @@
             <tbody>
                 <tr>
                     <th scope="row">#</th>
-                    <td>{{$category->id}}</td>
+                    <td>{{$serie->id}}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Categoria</th>
-                    <td>{{$category->category}}</td>
+                    <th scope="row">Título</th>
+                    <td>{{$serie->title}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Descrição</th>
+                    <td>{{$serie->description}}</td>
                 </tr>
             </tbody>
         </table>
