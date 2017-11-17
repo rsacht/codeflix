@@ -1,5 +1,6 @@
 <?php
 
+use CodeFlix\Models\Category;
 use Faker\Generator as Faker;
 
 /*
@@ -29,5 +30,12 @@ $factory->state(\CodeFlix\Models\User::class,'admin', function (Faker $faker){
 
     return [
         'role' => \CodeFlix\Models\User::ROLE_ADMIN,
+    ];
+});
+
+//Factory de Category
+$factory->define(Category::class, function (Faker $faker) {
+    return [
+        'category' => $faker->unique()->word
     ];
 });
