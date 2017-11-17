@@ -1,7 +1,8 @@
 <?php
 
-namespace CodeFlix\Http\Controllers;
+namespace CodeFlix\Http\Controllers\Admin;
 
+use CodeFlix\Http\Controllers\Controller;
 use CodeFlix\Models\Serie;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        //
+        $series = $this->repository->paginate();
+        return view('admin.series.index', compact('series'));
     }
 
     /**
@@ -24,7 +26,12 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        $form = FormBuilder::create(SerieForm::class, [
+            'url' => route('admin.series.store'),
+            'method' => 'POST'
+        ]);
+        return view('admin.series.create', compact('form'));
+
     }
 
     /**
