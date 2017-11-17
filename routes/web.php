@@ -50,6 +50,9 @@ Route::group([
         Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user_settings.update');
         //CATEGORIAS
         Route::resource('categories', 'CategoryController');
+        //SERIES
+        Route::resource('series', 'SeriesController');
+
     });
 });
 
