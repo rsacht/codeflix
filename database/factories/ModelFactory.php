@@ -1,6 +1,7 @@
 <?php
 
 use CodeFlix\Models\Category;
+use CodeFlix\Models\Serie;
 use Faker\Generator as Faker;
 
 /*
@@ -37,5 +38,14 @@ $factory->state(\CodeFlix\Models\User::class,'admin', function (Faker $faker){
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'category' => $faker->unique()->word
+    ];
+});
+
+//Factory de Serie
+$factory->define(Serie::class, function (Faker $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(10),
+        'thumb' => 'thumb.jpg'
     ];
 });
