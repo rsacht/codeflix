@@ -6,7 +6,7 @@
             <h3>Editar meu perfil</h3>
             <?php $icon = Icon::create('floppy-disk');?>
             {!!
-                form($form->add('salvar', 'submit',
+                form($form->add('salve', 'submit',
                     [
                         'attr' => ['class' => 'btn btn-primary btn-block'],
                         'label' => $icon

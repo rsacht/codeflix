@@ -34,12 +34,12 @@ Route::group([
     'namespace' => 'Admin\\'
 ],function(){
     //Rotas publicas
-    Route::name('login')->get('login', 'Auth\LoginController@showLoginForm');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
     //Rotas privadas, permitidas apenas a administradores
     Route::group(['middleware' => ['isVerified','can:admin']], function (){
-        Route::name('logout')->post('logout', 'Auth\LoginController@logout');
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
         Route::get('dashboard', function(){
             return view('admin.dashboard');
         });

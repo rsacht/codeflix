@@ -4,9 +4,7 @@ namespace CodeFlix\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeFlix\Repositories\CategoryRepository;
 use CodeFlix\Models\Category;
-use CodeFlix\Validators\CategoryValidator;
 
 /**
  * Class CategoryRepositoryEloquent

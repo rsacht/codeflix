@@ -29,11 +29,12 @@ class UserSettingsController extends Controller
      */
     public function edit()
     {
-        /** @var Form $form */
-        $form = FormBuilder::create(UserSettingsForm::class, [
+                /** @var Form $form */
+        $form = FormBuilder::create(UserSettingsForm::class,[
             'url' => route('admin.user_settings.update'),
             'method' => 'PUT'
         ]);
+
         return view('admin.auth.setting', compact('form'));
     }
 
@@ -57,7 +58,7 @@ class UserSettingsController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $this->repository->update($data,\Auth::user()->$id);
+        $this->repository->update($data,\Auth::user()->id);
         $request->session()->flash('message', 'Senha alterada com sucesso!');
         return redirect()->route('admin.user_settings.edit');
     }

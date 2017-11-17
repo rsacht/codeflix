@@ -28,17 +28,17 @@
                     Auth::user()->name,
                         [
                             [
+                                'link' => route('admin.user_settings.edit'),
+                                'title' => 'Configurações',
+                            ],
+                            [
                                 'link' => route('admin.logout'),
                                 'title' => 'Logout',
                                 'linkAttributes' => [
                                     'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
                                 ]
                             ],
-                            [
-                                'link' => route('admin.user_settings.edit'),
-                                'title' => 'Configurações',
-                            ],
-                            //['link' => route('admin.logout'), 'title' => 'Carrinho'],
+
                         ]
                     ]
                 ])->right();
@@ -53,6 +53,7 @@
                 'style' => 'display:none'
             ])?>
             {!! form($formLogout) !!}
+
 
         @if(Session::has('message'))
             <div class="container">
