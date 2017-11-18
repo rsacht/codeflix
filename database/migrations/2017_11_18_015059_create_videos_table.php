@@ -20,7 +20,7 @@ class CreateVideosTable extends Migration
             $table->integer('duration')->nullable();
             $table->string('file')->nullable();
             $table->string('thumb')->nullable();
-            $table->boolean('complete')->default(0);
+            $table->boolean('completed')->default(0);
             $table->boolean('published')->default(0);
             $table->integer('serie_id')->unsigned()->nullable();
             $table->foreign('serie_id')->references('id')->on('series');
