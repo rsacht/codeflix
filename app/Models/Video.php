@@ -12,4 +12,8 @@ class Video extends Model implements Transformable
 
     protected $fillable = [];
 
+    public function serie(){
+        return $this->belongsTo(Serie::class);
+    }
+
 }
