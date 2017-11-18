@@ -2,6 +2,7 @@
 
 use CodeFlix\Models\Category;
 use CodeFlix\Models\Serie;
+use CodeFlix\Models\Video;
 use Faker\Generator as Faker;
 
 /*
@@ -34,18 +35,30 @@ $factory->state(\CodeFlix\Models\User::class,'admin', function (Faker $faker){
     ];
 });
 
-//Factory de Category
+//Factory de Categorias
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'category' => $faker->unique()->word
     ];
 });
 
-//Factory de Serie
+//Factory de Series
 $factory->define(Serie::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(10),
         'thumb' => 'thumb.jpg'
+    ];
+});
+//Factory de Vídeos
+$factory->define(Video::class, function (Faker $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(10),
+        'duration' => rand(1, 30),
+        'file' => 'file.jpg',
+        'thumb' => 'thumb.jpg',
+        'published' => rand(0,1),
+        'completed' => 1
     ];
 });
