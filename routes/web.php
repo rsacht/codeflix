@@ -53,6 +53,8 @@ Route::group([
         Route::resource('categories', 'CategoryController');
         //SERIES
         Route::resource('series', 'SeriesController');
+        //VÍDEOS
+        Route::resource('videos', 'VideosController');
 
     });
 });

@@ -3,11 +3,21 @@
 namespace CodeFlix\Http\Controllers\Admin;
 
 use CodeFlix\Models\Video;
+use CodeFlix\Repositories\VideoRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
 
 class VideosController extends Controller
 {
+    /**
+     * @var VideoRepository
+     */
+    private $repository;
+
+    public function __construct(VideoRepository $repository){
+
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
