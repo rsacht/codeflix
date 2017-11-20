@@ -236,6 +236,7 @@ return [
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'MediaObject' => Bootstrapper\Facades\MediaObject::class,
 ],
 
 ];
