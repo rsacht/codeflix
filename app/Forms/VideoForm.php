@@ -9,7 +9,11 @@ class VideoForm extends Form
     public function buildForm()
     {
         $this
-            ->add('title', 'text')
-            ->add('description', 'textarea');
+            ->add('title', 'text', [
+                'rules' => 'required|max:255'
+            ])
+            ->add('description', 'textarea',[
+                'rules' => 'required'
+            ]);
     }
 }
