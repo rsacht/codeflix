@@ -3,28 +3,38 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Lista de Séries</h3>
-            {!! Button::primary('Nova Série')->asLinkTo(route('admin.series.create')) !!}
+            <h3>Lista de Vídeos</h3>
+            {!! Button::primary('Novo Vídeo')->asLinkTo(route('admin.videos.create')) !!}
         </div>
     <div class="row">
-    {!!
-        Table::withContents($series->items())->striped()->callback('Ações', function($field, $serie){
-            $linkEdit = route('admin.series.edit', [ 'serie' => $serie->id]);
-            $linkShow = route('admin.series.show', [ 'serie' => $serie->id]);
+    {!! Table::withContents($videos->items())->striped()
+        ->callback('Descrição', function($field, $video){
+            return MediaObject::withContents(
+                    [
+                        'image' => '//placehold.it/64x64',
+                        'link' => '#',
+                        'heading' => $video->title,
+                        'body' => $video->description
+                    ]
+             );
+        })
+        ->callback('Ações', function($field, $video){
+            $linkEdit = route('admin.videos.edit', [ 'video' => $video->id]);
+            $linkShow = route('admin.videos.show', [ 'video' => $video->id]);
             return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit).'|'.
                    Button::link(Icon::create('remove'))->asLinkTo($linkShow);
         })
     !!}
     </div>
 
-    {!! $series->links() !!}
+    {!! $videos->links() !!}
     </div>
 @endsection
 
 @push('styles')
     <style type="text/css">
-        table>thead>tr>th:nth-child(3){
-            width:50%;
+        .media-body{
+            width:auto;
         }
     </style>
 @endpush

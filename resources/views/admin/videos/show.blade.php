@@ -3,17 +3,17 @@
 @section('content')
     <div class="container">
     <div class="row">
-        <h3>Séries</h3>
+        <h3>Vídeos</h3>
         <?php $iconEdit = Icon::create('pencil');?>
-        {!! Button::primary($iconEdit)->asLinkTo(route('admin.series.edit', ['serie' => $serie->id])) !!}
+        {!! Button::primary($iconEdit)->asLinkTo(route('admin.videos.edit', ['videos' => $video->id])) !!}
         <?php $iconDestroy = Icon::create('remove');?>
         {!! Button::danger($iconDestroy)
-            ->asLinkTo(route('admin.series.destroy',['serie' => $serie->id]))
+            ->asLinkTo(route('admin.videos.destroy',['video' => $video>id]))
             ->addAttributes(['onclick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"])
         !!}
         <?php $formDelete = FormBuilder::plain([
             'id' => 'form-delete',
-            'route' => ['admin.series.destroy','serie' => $serie->id],
+            'route' => ['admin.videos.destroy','video' => $video->id],
             'method' => 'DELETE',
             'style'=> 'display:none'
         ])?>
@@ -25,15 +25,15 @@
             <tbody>
                 <tr>
                     <th scope="row">#</th>
-                    <td>{{$serie->id}}</td>
+                    <td>{{$video->id}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Título</th>
-                    <td>{{$serie->title}}</td>
+                    <td>{{$video->title}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Descrição</th>
-                    <td>{{$serie->description}}</td>
+                    <td>{{$video->description}}</td>
                 </tr>
             </tbody>
         </table>
