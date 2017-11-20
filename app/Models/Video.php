@@ -11,7 +11,13 @@ class Video extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'title',
+        'description',
+        'duration',
+        'published',
+        'serie_id'
+    ];
 
     public function serie(){
         return $this->belongsTo(Serie::class);
