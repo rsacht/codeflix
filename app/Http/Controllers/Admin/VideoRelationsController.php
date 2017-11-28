@@ -4,12 +4,25 @@ namespace CodeFlix\Http\Controllers\Admin;
 
 use CodeFlix\Forms\VideoRelationForm;
 use CodeFlix\Models\Video;
+use CodeFlix\Repositories\VideoRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
 use Kris\LaravelFormBuilder\Form;
 
 class VideoRelationsController extends Controller
 {
+    /*
+     * @var VideoRepository
+     */
+    private $repository;
+    /**
+     * VideoRelationsController constructor.
+     */
+    public function __construct(VideoRepository $repository)
+    {
+
+        $this->repository = $repository;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,15 +47,21 @@ class VideoRelationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        /** @var Form $form */
+        $form=\FormBuilder::create(VideoRelationForm::class);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+        $data = $form->getFieldValues();
+        $this->repository->update($data, $id);
+        $request->session()->flash('message', 'Vídeo alterado com sucesso.');
+        return redirect()->route('admin.videos.relations.create', ['video' => $id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \CodeFlix\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
 }
