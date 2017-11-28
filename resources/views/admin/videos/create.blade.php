@@ -13,8 +13,8 @@
                         'label' => $icon
                         ]))
                     !!}
+                </div>
                 @endcomponent
-            </div>
         </div>
     </div>
 @endsection
