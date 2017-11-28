@@ -2,10 +2,12 @@
 
 namespace CodeFlix\Http\Controllers\Admin;
 
+use CodeFlix\Forms\VideoForm;
 use CodeFlix\Models\Video;
 use CodeFlix\Repositories\VideoRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
+use Kris\LaravelFormBuilder\Form;
 
 class VideosController extends Controller
 {
@@ -25,7 +27,8 @@ class VideosController extends Controller
      */
     public function index()
     {
-        //
+        $videos = $this->repository->paginate();
+        return view('admin.videos.index', compact('videos'));
     }
 
     /**
@@ -35,7 +38,13 @@ class VideosController extends Controller
      */
     public function create()
     {
-        //
+        /** @var Form $form */
+        $form = \FormBuilder::create(VideoForm::class,[
+            'url' => route('admin.videos.store'),
+            'method' => 'POST'
+        ]);
+
+        return view('admin.videos.create', compact('form'));
     }
 
     /**
@@ -46,8 +55,20 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form = \FormBuilder::create(VideoForm::class);
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($from->getErrors())
+                ->withInput();
+        }
+
+        $data=$form->getFieldValues();
+        $this->repository->create($data);
+        $request->session()->flash('message','Vídeo cadastrado com sucesso.');
+        return redirect()->route('admin.videos.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -68,7 +89,14 @@ class VideosController extends Controller
      */
     public function edit(Video $video)
     {
-        //
+        /** @var Form $form */
+        $form =\FormBuilder::create(VideoForm::class, [
+            'url' =>route('admin.videos.update', ['video' => $video->id]),
+            'method' => 'PUT',
+            'model' => $video
+        ]);
+
+        return view('admin.videos.edit', compact('form'));
     }
 
     /**
@@ -80,7 +108,19 @@ class VideosController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        //
+        /** @var Form $form */
+        $form=\FormBuilder::create(VideoForm::class);
+
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+        $data = $form->getFieldValues();
+        $this->repository->update($data, $id);
+        $request->session()->flash('message', 'Vídeo alterado com sucesso.');
+        return redirect()->back;
     }
 
     /**
