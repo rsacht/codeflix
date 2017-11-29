@@ -5,7 +5,6 @@ namespace CodeFlix\Media;
 
 
 use Illuminate\Filesystem\FilesystemAdapter;
-use Storage;
 
 trait VideoStorages
 {
@@ -16,7 +15,7 @@ trait VideoStorages
      */
     public function getStorage()
     {
-        Storage::disk($this->getDiskDriver());
+        return \Storage::disk($this->getDiskDriver());
     }
 
     protected function getDiskDriver(){

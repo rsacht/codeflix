@@ -11,7 +11,7 @@ trait ThumbUploads
     {
         $model = $this->find($id);
         //Mover o arquivo para o local correto
-        $this->upload($model, $file);
+        $name = $this->upload($model, $file);
         //Se o nome existe
         if($name){
             $model->thumb = $name;
