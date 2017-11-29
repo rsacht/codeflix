@@ -13,6 +13,9 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
+        //Excluir as sub-pastas quando rodar as seeds
+       $rootPath = config('filesystems.disks.videos_local.root');
+        \File::deleteDirectory($rootPath, true);
         /** @var Collection $series */
         $series = factory(\CodeFlix\Models\Serie::class, 5)->create();
         $repository = app(SerieRepository::class);
@@ -24,7 +27,8 @@ class SeriesTableSeeder extends Seeder
 
     protected function getThumbs(){
         return new \Illuminate\Support\Collection([
-            new \Illuminate\Http\UploadedFile(storage_path('app/files/faker/thumbs/thumb_einstein.png'), 'thumb_einstein.png')
+            new \Illuminate\Http\UploadedFile(
+                storage_path('app/files/faker/thumbs/thumb_einstein.png'), 'thumb_einstein.png'),
         ]);
     }
 }
