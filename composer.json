@@ -9,6 +9,7 @@
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "~2.3",
         "fideloper/proxy": "~3.3",
+        "folklore/image": "0.3.16",
         "jrean/laravel-user-verification": "dev-master",
         "kris/laravel-form-builder": "1.11.0",
         "laravel/framework": "5.5.*",
