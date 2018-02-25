@@ -3,7 +3,9 @@
 namespace CodeFlix\Auth;
 
 
-class JWTProvider
+use Dingo\Api\Auth\Provider\Authorization;
+
+class JWTProvider extends Authorization
 {
 
 }
