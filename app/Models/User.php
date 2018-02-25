@@ -6,8 +6,9 @@ use Bootstrapper\Interfaces\TableInterface;
 use CodeFlix\Notifications\DefaultResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements TableInterface
+class User extends Authenticatable implements TableInterface, JWTSubject
 {
     use Notifiable;
 
@@ -76,5 +77,21 @@ class User extends Authenticatable implements TableInterface
             case 'Nome': return $this->name;
             case 'E-mail': return $this->email;
         }
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this-> id;
+    }
+    //Payload
+    public function getJWTCustomClaims()
+    {
+        return[
+            'user' => [
+                'id' =>$this->id,
+                'name' => $this->name,
+                'email' => $this->email
+            ]
+        ];
     }
 }
