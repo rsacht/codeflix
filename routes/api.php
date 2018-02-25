@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     ],function(){
         ApiRoute::post('/access_token', [
             'uses'=>'AuthController@accessToken',
-            'middleware'=>'api.throttle',
+            'middleware'=>['api.throttle', 'api.auth'],
             'limit'=>10,
             'expires' => 1
         ])->name('.acces_token');
