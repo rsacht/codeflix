@@ -13,4 +13,16 @@ class AuthController extends Controller
     protected function sendLoginResponse(Request $request, $token){
         return ['token' => $token];
     }
+
+    public function accessToken(Request $request)
+    {
+        $this->validateLogin($request);
+
+        $credentials = $this->credentials($request);
+
+        if ($token = \Auth::guard('api')->attempt($credentials)) {
+            //return resposta de sucesso para quem estiver consumindo!!
+            return $this->sendLoginResponse($request,$token);
+        }
+    }
 }
