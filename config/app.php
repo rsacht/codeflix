@@ -172,7 +172,6 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Folklore\Image\ImageServiceProvider::class,
-        Dingo\Api\Provider\LaravelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -240,7 +239,6 @@ return [
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'Image' => Folklore\Image\Facades\Image::class,
-        'ApiRoute' => \Dingo\Api\Facade\Route::class
 ],
 
 ];
