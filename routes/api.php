@@ -27,6 +27,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             'limit'=>10,
             'expires' => 1
         ])->name('.acces_token');
+        ApiRoute::group([
+            'middleware'=>'api.throttle',
+            'limit'=>100,
+            'expires' => 3
+        ], function(){
+            //endpoint que precisarão de autenticação
+        });
     });
     \ApiRoute::get('/test', function(){
         return \CodeFlix\Models\User::paginate();
