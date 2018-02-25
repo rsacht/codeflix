@@ -23,16 +23,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     ],function(){
         ApiRoute::post('/access_token', [
             'uses'=>'AuthController@accessToken',
-            'middleware'=>['api.throttle', 'api.auth'],
+            'middleware'=>'api.throttle',
             'limit'=>10,
             'expires' => 1
         ])->name('.acces_token');
         ApiRoute::group([
-            'middleware'=>'api.throttle',
+            'middleware'=>['api.throttle','api.auth'],
             'limit'=>100,
             'expires' => 3
         ], function(){
-            //endpoint que precisarão de autenticação
+            //endpoints que precisarão de autenticação
+            ApiRoute::get('/test', function(){
+                return "Opa!! Estou autenticado!";
+            });
         });
     });
     \ApiRoute::get('/test', function(){
