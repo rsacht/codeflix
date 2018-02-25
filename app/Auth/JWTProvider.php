@@ -17,7 +17,7 @@ class JWTProvider extends Authorization
      */
     public function getAuthorizationMethod()
     {
-        // TODO: Implement getAuthorizationMethod() method.
+        return 'bearer';
     }
 
     /**
