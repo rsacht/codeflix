@@ -17,10 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 \ApiRoute::version('v1', function(){
-    \ApiRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api\v1', 'as' => 'api' ], function(){
-        \ApiRoute::post('/access_token', 'AuthController@accessToken')
-            ->name('.acces_token')
-            ->middleware('api.throttle');;
+    \ApiRoute::group([
+        'namespace' => 'CodeFlix\Http\Controllers\Api\v1',
+        'as' => 'api'
+    ],function(){
+        ApiRoute::post('/access_token', [
+            'uses'=>'AuthController@accessToken',
+            'middleware'=>'api.throttle',
+            'limit'=>10,
+            'expires' => 1
+        ])->name('.acces_token');
     });
     \ApiRoute::get('/test', function(){
         return \CodeFlix\Models\User::paginate();
