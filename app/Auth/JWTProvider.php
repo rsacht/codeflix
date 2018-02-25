@@ -30,6 +30,6 @@ class JWTProvider extends Authorization
      */
     public function authenticate(Request $request, Route $route)
     {
-        // TODO: Implement authenticate() method.
+        return \Auth::guard('api')->authenticate();
     }
 }
