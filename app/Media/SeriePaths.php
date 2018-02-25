@@ -20,6 +20,10 @@ use VideoStorages;
         return "{$this->thumb_folder_storage}/{$this->thumb}";
     }
 
+    public function getThumbSmallRelativeAttribute(){
+        return "{$this->thumb_folder_storage}/{$this->thumb}";
+    }
+
     //Mutator para pegar o caminho completo do arquivo
     public function getThumbPathAttribute(){
         return $this->getAbsolutePath($this->getStorage(), $this->thumb_relative);

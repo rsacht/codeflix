@@ -14,6 +14,14 @@ use CodeFlix\Models\Serie;
 class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 {
     use ThumbUploads;
+
+    public function create(array $attributes)
+    {
+        $model =  parent::create(array_except($attributes, 'thumb_file'));
+        $this->uploadThumb($model->id,$attributes['thumb_file']);
+        return $model;
+    }
+
     /**
      * Specify Model class name
      *

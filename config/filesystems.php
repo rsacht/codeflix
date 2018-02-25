@@ -43,6 +43,11 @@ return [
 
     'disks' => [
 
+        'videos_local' => [
+            'driver' => 'local',
+            'root' => storage_path('app/videos_test'),
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -55,10 +60,6 @@ return [
             'visibility' => 'public',
         ],
 
-        'videos_local' => [
-            'driver' => 'local',
-            'root' => storage_path('app/videos_test')
-        ],
 
         's3' => [
             'driver' => 's3',

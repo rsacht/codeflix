@@ -68,7 +68,7 @@ class SeriesController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $data['thumb'] = 'thumb.jpg';
+        $data['thumb'] = env('SERIE_NO_THUMB');
         Model::unguard();
         $this->repository->create($data);
         $request->session()->flash('message', 'Série criada com sucesso!');
