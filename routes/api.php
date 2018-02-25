@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 \ApiRoute::version('v1', function(){
-    \ApiRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api', 'as' => 'api' ], function(){
+    \ApiRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api\v1', 'as' => 'api' ], function(){
         \ApiRoute::post('/access_token', 'AuthController@accessToken');
     });
     \ApiRoute::get('/test', function(){
