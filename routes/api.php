@@ -38,7 +38,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             });
         });
     });
-    \ApiRoute::get('/test', function(){
-        return \CodeFlix\Models\User::paginate();
-    });
+
 });
