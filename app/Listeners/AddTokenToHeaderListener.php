@@ -2,7 +2,7 @@
 
 namespace CodeFlix\Listeners;
 
-use CodeFlix\Events\Dingo\Api\Event\ResponseWasMorphed;
+use Dingo\Api\Event\ResponseWasMorphed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
