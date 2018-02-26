@@ -25,10 +25,12 @@ class AuthController extends Controller
             return $this->sendLoginResponse($request,$token);
         }
     }
+
     protected function sendFailedLoginResponse(Request $request)
     {
         return response()->json([
             'error' => \Lang::get('auth.failed')
         ],400);
     }
+    
 }
