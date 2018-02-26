@@ -24,6 +24,7 @@ class AuthController extends Controller
             //return resposta de sucesso para quem estiver consumindo!!
             return $this->sendLoginResponse($request,$token);
         }
+        return $this->sendFailedLoginResponse($request);
     }
 
     protected function sendFailedLoginResponse(Request $request)
