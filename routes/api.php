@@ -36,6 +36,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             ApiRoute::get('/test', function(){
                 return "Opa!! Estou autenticado!";
             });
+            ApiRoute::post('/logout','AuthController@logout');
         });
     });
 
