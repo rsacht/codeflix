@@ -32,6 +32,9 @@ class AddTokenToHeaderListener
      */
     public function handle(ResponseWasMorphed $event)
     {
-        //
+        $token = $this->jwt->getToken();
+        if($token){
+            $event->response->headers->set('Authorization', "Bearer {$token->get()}");
+        }
     }
 }
