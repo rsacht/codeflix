@@ -5,17 +5,23 @@ namespace CodeFlix\Listeners;
 use Dingo\Api\Event\ResponseWasMorphed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Tymon\JWTAuth\JWT;
 
 class AddTokenToHeaderListener
 {
+    /**
+     * @var JWT
+     */
+    private $jwt;
+
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(JWT $jwt)
     {
-        //
+        $this->jwt = $jwt;
     }
 
     /**
