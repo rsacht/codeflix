@@ -46,4 +46,5 @@ export class DefaultXhrBackendProvider extends XHRBackend {
             jwtClient.setToken(token);
         }
     }
+
 }
