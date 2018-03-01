@@ -17,17 +17,17 @@ export class HomePage {
 
     ionViewDidLoad(){
         setInterval(() =>{
-            this.authHttp.get('http://codeflix/api/user')
+            this.authHttp.get('http://codeflix.app/api/user')
             .toPromise()
             .then(() =>{
                 console.log('primeira');
             });
-            this.authHttp.get('http://codeflix/api/user')
+            this.authHttp.get('http://codeflix.app/api/user')
                 .toPromise()
                 .then(() =>{
                     console.log('segunda');
                 });
-            this.authHttp.get('http://codeflix/api/user')
+            this.authHttp.get('http://codeflix.app/api/user')
                 .toPromise()
                 .then(() =>{
                     console.log('terceira');
