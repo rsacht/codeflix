@@ -15,15 +15,8 @@ import {Observable} from "rxjs/Observable";
 import {appContainer} from "../../app/app.container";
 import {JwtClientProvider} from "../jwt-client/jwt-client";
 
-/*
-  Generated class for the DefaultXhrBackendProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DefaultXhrBackendProvider extends XHRBackend {
-
     constructor(browserXHR: BrowserXhr,
                 baseResponseOptions: ResponseOptions,
                 xsrfStrategy: XSRFStrategy) {
@@ -53,6 +46,4 @@ export class DefaultXhrBackendProvider extends XHRBackend {
             jwtClient.setToken(token);
         }
     }
-
-
 }
